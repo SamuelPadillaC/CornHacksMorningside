@@ -31,7 +31,7 @@ class Data:
     ## Deine Data ##
     def DefineData(self, status):
         self.status = status #Status is time
-        while self.X[int(len(self.X - 1))] < self.status: #Last elmt of X < total time
+        while self.X[int(len(self.X) - 1)] < int(self.status): #Last elmt of X < total time
             t0 = time.time()
             arduinoData = self.ser.readline().decode('ascii')
             try:
@@ -39,8 +39,7 @@ class Data:
             except:
                 pass
             self.X.append((time.time() - t0)+self.X[len(self.X)-1])
-            self.status += 1
-
+            
         # Make sure arrays have same size
         if len(self.Y) > len(self.X):
             while len(self.Y) > len(self.X):

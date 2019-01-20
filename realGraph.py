@@ -44,6 +44,7 @@ class Grapher():
 
 class MainWindow():
     def __init__(self, datObject, graphObject, widgetArray):
+        self.status = 1
         self.datObject = datObject
         self.graphObject = graphObject
         self.startStopButton = Button(top, text="Start", command=self.changeStatus)
