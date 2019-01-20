@@ -14,11 +14,13 @@ from tkinter import *
 import serial
 import time
 import math
+import sys
 
 from GraphMath import *
 
 top = Tk()
 top.title("OpenGraph")
+top.minsize(500,500)
 
 class Grapher():
     def __init__(self, xArray, yArray, xAxisLabel, yAxisLabel):
@@ -46,14 +48,16 @@ class MainWindow():
     def __init__(self, datObject, graphObject, widgetArray):
         self.datObject = datObject
         self.graphObject = graphObject
-        self.startStopButton = Button(top, text="Start", command=self.changeStatus)
+        self.startStopButton = Button(top, text="Start Recording", command=self.changeStatus)
         self.calculations = Button(top, text="Caclulate Statistics", command=self.updateStatistics)
         self.plotData = Button(top, text="Plot Test", command = self.graphObject.plotData)
         self.startStopButton.grid( column = 0, row = 0)
-        self.calculations.grid( row=1, column=0)
+        self.calculations.grid( row=0, column=3)
         self.plotData.grid(row= 0, column= 1)
         self.entryWid = Entry(top)
         self.entryWid.grid(row=0, column = 2)
+        self.exitButton = Button(top, text="Exit", command=self.exitProgram)
+        self.exitButton.grid(row=0, column = 3)
 
         self.objectsArray = widgetArray
 
@@ -81,6 +85,9 @@ class MainWindow():
         else:
             self.datObject.DefineData(self.entryWid.get())
             self.status = 1
+
+    def exitProgram():
+        sys.exit()
 
 
 class Stats():
