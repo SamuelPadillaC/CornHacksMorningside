@@ -26,13 +26,13 @@ class Data:
         self.X = [0]
         self.Y = []
         self.SortY = []
+        print('REACHED RESET')
     ####################
 
     ## Deine Data ##
     def DefineData(self, status):
         self.status = status
-        print("The value of status is: ", self.status)
-        while self.status < 169: #figure this out
+        while self.status < 100: #figure this out
             t0 = time.time()
             arduinoData = self.ser.readline().decode('ascii')
             try:
@@ -58,11 +58,12 @@ class Data:
             return 1
         self.FnSortY()
 
+        print ('SortY size is: ', len(self.SortY))
         # Median: #
         if len(self.SortY)%2 != 0: #Odd
-            self.Median = self.SortY[(len(self.SortY)+1)/2]
+            self.Median = self.SortY[int((len(self.SortY)+1)/2)]
         else:
-            self.Median = (self.SortY[len(self.SortY)/2] + self.SortY[(len(self.SortY)/2)+1])/2
+            self.Median = (self.SortY[int(len(self.SortY)/2)] + self.SortY[(int(len(self.SortY)/2)+1)])/2
         ###########
         # Mean #
         self.Mean = sum(self.SortY)/ len(self.SortY)
@@ -81,7 +82,7 @@ class Data:
             self.Mode = 'NaN'
         ###########
         # Range: #
-        self.Range = self.SortY[len(self.SortY) - 1] - self.SortY[0]
+        self.Range = self.SortY[int(len(self.SortY) - 1)] - self.SortY[0]
         ###########
         # Standard Deviation #
         top = 0
