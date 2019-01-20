@@ -33,6 +33,12 @@ class Grapher():
         plt.ylabel(self.yAxisLabel)
         plt.title(self.xAxisLabel + " vs. " + self.yAxisLabel)
         plt.show()
+        self.xArray = dataObject.getX()
+        self.yArray = dataObject.getY()
+
+    def reset(self):
+        self.xArray = []
+        self.yArray = []
 
 ##Pthis object places all the items in the page
 
@@ -51,20 +57,23 @@ class MainWindow():
         self.objectsArray = widgetArray
 
     def updateStatistics(self):
-        for ob in self.objectsArray:
-            ob.placeWidget()
 
-        for ob in widgetArray:
+        print(self.datObject.getMean())
+
+        for ob in self.objectsArray:
             if ob.name == "Mean":
                 ob.update(self.datObject.getMean())
-            else if ob.name == "Median":
+            elif ob.name == "Median":
                 ob.update(self.datObject.getMedian())
-            else if ob.name == "Mode":
+            elif ob.name == "Mode":
                 ob.update(self.datObject.getMode())
-            else if ob.name == "Range":
+            elif ob.name == "Range":
                 ob.update(self.datObject.getRange())
-            else if ob.name == "Standard Deviation":
+            elif ob.name == "Standard Deviation":
                 ob.update(self.datObject.getStDev())
+
+        for ob in self.objectsArray:
+            ob.placeWidget()
 
     def changeStatus(self):
         if self.status == 1:
@@ -85,8 +94,9 @@ class Stats():
         self.valueWidget = Label(top, text = self.value)
 
     def update(self, value):
-        self.valueWidget.delete('1.0', END)
-        self.valueWidget.insert(END, value)
+        self.value= value
+        self.valueWidget.config(text = self.value)
+        #self.valueWidget.insert(END, value)
 
     def placeWidget(self):
         self.labelWidget.grid( row=self.rowPos, column=self.columnPos)

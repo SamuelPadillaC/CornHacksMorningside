@@ -41,7 +41,15 @@ class Data:
                 pass
             self.X.append((time.time() - t0)+self.X[len(self.X)-1])
             self.status += 1
-        self.X.pop() #Get rid of extra X element
+
+        # Make sure arrays have same size
+        if len(self.Y) > len(self.X):
+            while len(self.Y) > len(self.X):
+                self.Y.pop()
+        elif len(self.Y) < len(self.X):
+            while len(self.Y) < len(self.X):
+                self.X.pop()
+                
         self.DefineStats() #Define Stats right away
     ####################
 
