@@ -58,8 +58,6 @@ class MainWindow():
 
     def updateStatistics(self):
 
-        print(self.datObject.getMean())
-
         for ob in self.objectsArray:
             if ob.name == "Mean":
                 ob.update(self.datObject.getMean())
@@ -96,7 +94,6 @@ class Stats():
     def update(self, value):
         self.value= value
         self.valueWidget.config(text = self.value)
-        #self.valueWidget.insert(END, value)
 
     def placeWidget(self):
         self.labelWidget.grid( row=self.rowPos, column=self.columnPos)
@@ -108,8 +105,6 @@ objectArray = [Stats("Mean", 2, 0),\
                 Stats("Mode", 4, 0), \
                 Stats("Range", 5, 0), \
                 Stats("Standard Deviation", 6, 0)]
-#graph1 = Graph([1,2,3,6,5], [5,13,5,1,1] , "testX", "testY")
-#graph1.plotData()
 dataObject = Data()
 graphy =  Grapher(dataObject.getX(),dataObject.getY(), "test y", "Time")
 wandow = MainWindow(dataObject, graphy, objectArray)

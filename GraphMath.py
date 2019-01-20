@@ -26,7 +26,6 @@ class Data:
         self.X = [0]
         self.Y = []
         self.SortY = []
-        print('REACHED RESET')
     ####################
 
     ## Deine Data ##
@@ -49,7 +48,7 @@ class Data:
         elif len(self.Y) < len(self.X):
             while len(self.Y) < len(self.X):
                 self.X.pop()
-                
+
         self.DefineStats() #Define Stats right away
     ####################
 
@@ -66,7 +65,6 @@ class Data:
             return 1
         self.FnSortY()
 
-        print ('SortY size is: ', len(self.SortY))
         # Median: #
         if len(self.SortY)%2 != 0: #Odd
             self.Median = self.SortY[int((len(self.SortY)+1)/2)]
