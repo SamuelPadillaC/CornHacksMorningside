@@ -9,13 +9,13 @@
 
 
 import matplotlib.pyplot as plt
-from Tkinter import *
+from tkinter import *
 
 import serial
 import time
 import math
 
-import GraphMath
+from GraphMath import *
 
 top = Tk()
 top.title("OpenGraph")

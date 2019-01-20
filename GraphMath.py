@@ -7,7 +7,7 @@ import math
 
 
 class Data:
-    def __init__ (self, ExecTime):
+    def __init__ (self):
         self.X = [0]
         self.Y = []
         self.SortY = []
