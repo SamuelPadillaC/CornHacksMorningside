@@ -10,6 +10,8 @@ class Data:
     def __init__ (self):
         self.X = [0]
         self.Y = []
+        self.backX = []
+        self.backY = []
         self.SortY = []
         self.ExecTime = 0
         self.ser = serial.Serial('COM6', baudrate = 9600, timeout = 1)
@@ -23,6 +25,8 @@ class Data:
 
     ## Reset ##
     def Reset(self):
+        self.backX = self.X.copy()
+        self.backY = self.Y.copy()
         self.X = [0]
         self.Y = []
         self.SortY = []
@@ -39,7 +43,7 @@ class Data:
             except:
                 pass
             self.X.append((time.time() - t0)+self.X[len(self.X)-1])
-            
+
         # Make sure arrays have same size
         if len(self.Y) > len(self.X):
             while len(self.Y) > len(self.X):
@@ -102,8 +106,12 @@ class Data:
     ## Get Functions ##
     def getX(self):
         return self.X
+    def getbackX(self):
+        return self.backX  
     def getY(self):
         return self.Y
+    def getbackY(self):
+        return self.backY
     def getMedian(self):
         return self.Median
     def getMean(self):

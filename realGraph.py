@@ -57,9 +57,7 @@ class MainWindow():
         self.plotData.grid(row= 0, column= 1)
         self.entryWid = Entry(top)
         self.entryWid.grid(row=0, column = 2)
-        self.exitButton = Button(top, text="Exit", command=self.exitProgram)
-        self.exitButton.grid(row=0, column = 3)
-
+        
         self.objectsArray = widgetArray
 
     def updateStatistics(self):
@@ -87,8 +85,6 @@ class MainWindow():
             self.datObject.DefineData(self.entryWid.get())
             self.status = 1
 
-    def exitProgram():
-        sys.exit()
 
 
 class Stats():
@@ -115,7 +111,7 @@ objectArray = [Stats("Mean", 2, 0),\
                 Stats("Range", 5, 0), \
                 Stats("Standard Deviation", 6, 0)]
 dataObject = Data()
-graphy =  Grapher(dataObject.getX(),dataObject.getY(), "test y", "Time")
+graphy =  Grapher(dataObject.getX(),dataObject.getY(), "Time", "Data")
 wandow = MainWindow(dataObject, graphy, objectArray)
 
 
