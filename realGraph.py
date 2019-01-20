@@ -44,7 +44,6 @@ class Grapher():
 
 class MainWindow():
     def __init__(self, datObject, graphObject, widgetArray):
-        self.status = 1
         self.datObject = datObject
         self.graphObject = graphObject
         self.startStopButton = Button(top, text="Start", command=self.changeStatus)
@@ -53,6 +52,8 @@ class MainWindow():
         self.startStopButton.grid( column = 0, row = 0)
         self.calculations.grid( row=1, column=0)
         self.plotData.grid(row= 0, column= 1)
+        self.entryWid = Entry(top)
+        self.entryWid.grid(row=0, column = 2)
 
         self.objectsArray = widgetArray
 
@@ -75,10 +76,10 @@ class MainWindow():
 
     def changeStatus(self):
         if self.status == 1:
-            self.datObject.DefineData(self.status)
+            self.datObject.DefineData(self.entryWid.get())
             self.status = 0
         else:
-            self.datObject.DefineData(self.status)
+            self.datObject.DefineData(self.entryWid.get())
             self.status = 1
 
 
