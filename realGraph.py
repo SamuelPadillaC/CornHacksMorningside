@@ -3,7 +3,6 @@
 #######################################
 #                                     #
 #   Making the UI for the OpenGraph   #
-#    Man, Guis suck, so does this     #
 #                                     #
 #######################################
 
