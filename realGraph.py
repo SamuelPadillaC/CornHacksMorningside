@@ -38,9 +38,10 @@ class Grapher():
 
 class MainWindow():
     def __init__(self, datObject, graphObject, widgetArray):
+        self.status = 1
         self.datObject = datObject
         self.graphObject = graphObject
-        self.startStopButton = Button(top, text="Start", command=self.datObject.DefineData)
+        self.startStopButton = Button(top, text="Start", command=self.changeStatus)
         self.calculations = Button(top, text="Caclulate Statistics", command=self.updateStatistics)
         self.plotData = Button(top, text="Plot Test", command = self.graphObject.plotData)
         self.startStopButton.grid( column = 0, row = 0)
@@ -52,6 +53,15 @@ class MainWindow():
     def updateStatistics(self):
         for ob in self.objectsArray:
             ob.placeWidget()
+    
+    def changeStatus(self):
+        if self.status == 1:
+            self.datObject.DefineData(self.status)
+            self.status = 0
+        else:
+            self.datObject.DefineData(self.status)
+            self.status = 1
+
 
 class Stats():
     def __init__(self, name, row, column):
@@ -79,7 +89,7 @@ objectArray = [Stats("Mean", 2, 0),\
 #graph1 = Graph([1,2,3,6,5], [5,13,5,1,1] , "testX", "testY")
 #graph1.plotData()
 dataObject = Data()
-graphy =  Grapher([2,3,3,11,35,4,42],[12,23,43,53,34635,64,45], "test y", "Time")
+graphy =  Grapher(dataObject.getX(),dataObject.getY(), "test y", "Time")
 wandow = MainWindow(dataObject, graphy, objectArray)
 
 

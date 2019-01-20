@@ -18,11 +18,21 @@ class Data:
         self.Mode = 0.0
         self.Range = 0.0
         self.StDev = 0.0
+        self.status = 0
+    ####################
+
+    ## Reset ##
+    def Reset(self):
+        self.X = [0]
+        self.Y = []
+        self.SortY = []
+    ####################
 
     ## Deine Data ##
-    def DefineData(self):
-        i = -1
-        while i < self.ExecTime: #figure this out
+    def DefineData(self, status):
+        self.status = status
+        print("The value of status is: ", self.status)
+        while self.status < 169: #figure this out
             t0 = time.time()
             arduinoData = self.ser.readline().decode('ascii')
             try:
@@ -30,8 +40,9 @@ class Data:
             except:
                 pass
             self.X.append((time.time() - t0)+self.X[len(self.X)-1])
-            self.X.pop() #Get rid of extra X element
-            i += 1
+            self.status += 1
+        self.X.pop() #Get rid of extra X element
+        self.DefineStats() #Define Stats right away
     ####################
 
     ## Sort ##
@@ -77,6 +88,9 @@ class Data:
         for i in self.SortY:
             top += math.pow((i - self.Mean), 2)
         self.StDev = math.sqrt(top/len(self.SortY))
+
+        # Reset arrays after done calculations
+        self.Reset()
     ####################
 
     ## Get Functions ##
