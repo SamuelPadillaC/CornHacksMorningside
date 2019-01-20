@@ -11,7 +11,7 @@ class Data:
         self.X = [0]
         self.Y = []
         self.SortY = []
-        self.ExecTime = ExecTime
+        self.ExecTime = 0
         self.ser = serial.Serial('COM6', baudrate = 9600, timeout = 1)
         self.Median = 0.0
         self.Mean = 0.0
@@ -21,7 +21,7 @@ class Data:
 
     ## Deine Data ##
     def DefineData(self):
-        i = 0
+        i = -1
         while i < self.ExecTime: #figure this out
             t0 = time.time()
             arduinoData = self.ser.readline().decode('ascii')

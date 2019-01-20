@@ -20,7 +20,7 @@ from GraphMath import *
 top = Tk()
 top.title("OpenGraph")
 
-class Graph():
+class Grapher():
     def __init__(self, xArray, yArray, xAxisLabel, yAxisLabel):
         self.xArray = xArray
         self.yArray = yArray
@@ -43,12 +43,13 @@ class MainWindow():
         self.startStopButton = Button(top, text="Start", command=self.datObject.DefineData)
         self.calculations = Button(top, text="Caclulate Statistics", command=self.updateStatistics)
         self.plotData = Button(top, text="Plot Test", command = self.graphObject.plotData)
-        self.startStopButton.grid(top, row=0, column=0)
-        self.calculations.grid(top, row=1, column=0)
-        self.plotData.grid(top, row= 0, column= 1)
+        self.startStopButton.grid( column = 0, row = 0)
+        self.calculations.grid( row=1, column=0)
+        self.plotData.grid(row= 0, column= 1)
 
         self.objectsArray = widgetArray
 
+    def updateStatistics(self):
         for ob in self.objectsArray:
             ob.placeWidget()
 
@@ -66,8 +67,8 @@ class Stats():
         self.valueWidget.insert(END, value)
 
     def placeWidget(self):
-        self.labelWidget.grid(top, row=self.rowPos, column=self.columnPos)
-        self.valueWidget.grid(top, row=self.rowPos, column=self.columnPos + 1)
+        self.labelWidget.grid( row=self.rowPos, column=self.columnPos)
+        self.valueWidget.grid( row=self.rowPos, column=self.columnPos + 1)
 
 
 objectArray = [Stats("Mean", 2, 0),\
@@ -78,7 +79,8 @@ objectArray = [Stats("Mean", 2, 0),\
 #graph1 = Graph([1,2,3,6,5], [5,13,5,1,1] , "testX", "testY")
 #graph1.plotData()
 dataObject = Data()
-wandow = MainWindow(dataObject, Graph(dataObject.getX(),dataObject.getY(), "test y", "Time"), objectArray)
+graphy =  Grapher([2,3,3,11,35,4,42],[12,23,43,53,34635,64,45], "test y", "Time")
+wandow = MainWindow(dataObject, graphy, objectArray)
 
 
 
