@@ -17,12 +17,9 @@ class Data:
         self.Mean = 0.0
         self.Mode = 0.0
         self.Range = 0.0
-        
-    ###############
-    ## Get rid of the extra X in the list
-    ##############
+        self.StDev = 0.0
 
-
+    ## Deine Data ##    
     def DefineData(self):
         i = 0
         while i < self.ExecTime: #figure this out
@@ -35,11 +32,15 @@ class Data:
             self.X.append((time.time() - t0)+self.X[len(self.X)-1]) 
             self.X.pop() #Get rid of extra X element
             i += 1
-
+    ####################
+    
+    ## Sort ##
     def FnSortY(self):
         self.SortY = self.Y.copy()
         self.SortY.sort()
+    ####################
 
+    ## Define Stats ##
     def DefineStats(self):
         # Guard in case there is no data
         if len(self.Y) == 0:
@@ -71,9 +72,14 @@ class Data:
         # Range: #
         self.Range = self.SortY[len(self.SortY) - 1] - self.SortY[0]
         ###########
+        # Standard Deviation #
+        top = 0
+        for i in self.SortY:
+            top += math.pow((i - self.Mean), 2)
+        self.StDev = math.sqrt(top/len(self.SortY))
+    ####################
 
-
-    # Get Functions
+    ## Get Functions ##
     def getX(self):
         return self.X
     def getY(self):
@@ -86,3 +92,6 @@ class Data:
         return self.Mode
     def getRange(self):
         return self.Range
+    def getStDev(self):
+        return self.StDev
+    ####################
