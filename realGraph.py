@@ -53,7 +53,19 @@ class MainWindow():
     def updateStatistics(self):
         for ob in self.objectsArray:
             ob.placeWidget()
-    
+
+        for ob in widgetArray:
+            if ob.name == "Mean":
+                ob.update(self.datObject.getMean())
+            else if ob.name == "Median":
+                ob.update(self.datObject.getMedian())
+            else if ob.name == "Mode":
+                ob.update(self.datObject.getMode())
+            else if ob.name == "Range":
+                ob.update(self.datObject.getRange())
+            else if ob.name == "Standard Deviation":
+                ob.update(self.datObject.getStDev())
+
     def changeStatus(self):
         if self.status == 1:
             self.datObject.DefineData(self.status)
