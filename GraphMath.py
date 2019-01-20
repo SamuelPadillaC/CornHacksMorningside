@@ -19,7 +19,7 @@ class Data:
         self.Range = 0.0
         self.StDev = 0.0
 
-    ## Deine Data ##    
+    ## Deine Data ##
     def DefineData(self):
         i = 0
         while i < self.ExecTime: #figure this out
@@ -29,11 +29,11 @@ class Data:
                 self.Y.append(float(arduinoData))
             except:
                 pass
-            self.X.append((time.time() - t0)+self.X[len(self.X)-1]) 
+            self.X.append((time.time() - t0)+self.X[len(self.X)-1])
             self.X.pop() #Get rid of extra X element
             i += 1
     ####################
-    
+
     ## Sort ##
     def FnSortY(self):
         self.SortY = self.Y.copy()
