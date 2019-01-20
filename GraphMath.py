@@ -31,7 +31,7 @@ class Data:
     ## Deine Data ##
     def DefineData(self, status):
         self.status = status
-        while self.status < 100: #figure this out
+        while self.X[int(len(self.X - 1))] < self.status: #Last elmt of X < total time
             t0 = time.time()
             arduinoData = self.ser.readline().decode('ascii')
             try:
